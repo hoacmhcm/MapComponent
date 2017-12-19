@@ -38,7 +38,7 @@ export default class App extends Component<{}> {
           latlng: { latitude: 10.848736, longitude: 106.770805 },
           image: require('./assets/traffic_bar_report_trafficjam.png'),
           title: 'Kẹt xe',
-          description: 'Ngay trước sư phạm kỹ thuật'
+          description: 'Cẩn thận có kẹt xe'
         },
         {
           id: 3,
@@ -56,7 +56,8 @@ export default class App extends Component<{}> {
       <Map
         showsUserLocation={true}
         followsUserLocation={true}
-        markers={this.state.markers} />
+        markers={this.state.markers}
+        textDirection={'Quận 9'} />
     );
   }
 }

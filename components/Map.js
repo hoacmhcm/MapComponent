@@ -20,6 +20,11 @@ export default class Map extends Component {
         markers: PropTypes.array,
     }
 
+    // static navigationOptions = {
+    //     drawerLabel: 'Home Screen',
+    // }
+
+
     constructor(props) {
         super(props);
         this.state = {
@@ -37,7 +42,30 @@ export default class Map extends Component {
             currentRegion: null,
             polylines: [],
             endpoint: null,
-
+            markers: [
+                {
+                    id: 1,
+                    latlng: { latitude: 10.8448376, longitude: 106.7765558 },
+                    image: require('../assets/traffic_bar_report_police.png'),
+                    title: 'Kẹt xe',
+                    description: 'Ngay trước sư phạm kỹ thuật'
+                },
+                {
+                    id: 2,
+                    latlng: { latitude: 10.848736, longitude: 106.770805 },
+                    image: require('../assets/traffic_bar_report_trafficjam.png'),
+                    title: 'Kẹt xe',
+                    description: 'Cẩn thận có kẹt xe'
+                },
+                {
+                    id: 3,
+                    latlng: { latitude: 10.849084, longitude: 106.771341 },
+                    image: require('../assets/traffic_bar_report_accident.png'),
+                    title: 'Kẹt xe',
+                    description: 'Ngay trước sư phạm kỹ thuật'
+                }
+            ],
+            textDirection: 'Quận 9',
         }
     }
 
@@ -112,7 +140,8 @@ export default class Map extends Component {
 
     getDirect = () => {
         try {
-            if (this.props.textDirection !== null) {
+            // if (this.props.textDirection !== null) {
+            if (this.state.textDirection !== null) {
                 console.log('GET!!!!');
                 navigator.geolocation.getCurrentPosition((position) => {
                     console.log(position);
@@ -211,17 +240,21 @@ export default class Map extends Component {
     }
 
     render() {
+        const { navigate } = this.props.navigation;
         return (
             <View style={{ flex: 1 }}>
                 <MapView
                     style={styles.map}
-                    showsUserLocation={this.props.showsUserLocation}
-                    followsUserLocation={this.props.followsUserLocation}
+                    // showsUserLocation={this.props.showsUserLocation}
+                    // followsUserLocation={this.props.followsUserLocation}
+                    showsUserLocation={true}
+                    followsUserLocation={true}
                     initialRegion={this.state.currentRegion}
                     onRegionChange={this.onRegionChange}
                     onPress={this.onMapPress} >
 
-                    {this.props.markers.map((marker) => (
+                    {/* {this.props.markers.map((marker) => ( */}
+                    {this.state.markers.map((marker) => (
                         <MapView.Marker
                             key={marker.id}
                             coordinate={marker.latlng}
@@ -242,7 +275,8 @@ export default class Map extends Component {
                 </MapView>
                 {this.state.status ? <ContentMarker curMarker={this.state.curMarker} /> : null}
 
-                <TouchableOpacity style={{alignContent:'center', alignSelf: 'flex-end' }}>
+                <TouchableOpacity style={{ position: 'absolute', bottom: 0, paddingRight: 10, alignSelf: 'flex-end' }
+                } onPress={() => this.props.navigation.navigate('Report')}>
                     <Image style={{ width: window.width / 6, height: window.height / 6, resizeMode: 'contain' }} source={require('../assets/report_button.png')} />
                 </TouchableOpacity>
 

@@ -12,7 +12,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 // import Map from './components/Map.js'
-import DrawerRouter from './components/Router'
+import Navigator from './components/Router'
 
 
 const instructions = Platform.select({
@@ -61,7 +61,7 @@ export default class App extends Component<{}> {
       //   followsUserLocation={true}
       //   markers={this.state.markers}
       //   textDirection={'Quận 9'} />
-      <DrawerRouter />
+      <Navigator />
     );
   }
 }

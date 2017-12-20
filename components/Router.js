@@ -1,9 +1,9 @@
 import React from 'react'
-import { DrawerNavigator } from "react-navigation";
+import { StackNavigator } from "react-navigation";
 import Map from './Map'
 import SendReport from './SendReport'
 
-const DrawerRouter = DrawerNavigator(
+const Navigator = StackNavigator(
     {
         Map: {
             path: '/',
@@ -16,7 +16,17 @@ const DrawerRouter = DrawerNavigator(
     },
     {
         initialRouteName: 'Map',
+        headerMode: 'none',
+        navigationOptions: ({ navigation }) => ({
+            gesturesEnabled: false
+        }),
+        transitionConfig: () => ({
+            transitionSpec: {
+                duration: 0
+            }
+        })
     }
+
 );
 
-export default DrawerRouter;
+export default Navigator;

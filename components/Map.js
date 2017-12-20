@@ -276,7 +276,7 @@ export default class Map extends Component {
                 {this.state.status ? <ContentMarker curMarker={this.state.curMarker} /> : null}
 
                 <TouchableOpacity style={{ position: 'absolute', bottom: 0, paddingRight: 10, alignSelf: 'flex-end' }
-                } onPress={() => this.props.navigation.navigate('Report')}>
+                } onPress={() => navigate('Report')}>
                     <Image style={{ width: window.width / 6, height: window.height / 6, resizeMode: 'contain' }} source={require('../assets/report_button.png')} />
                 </TouchableOpacity>
 

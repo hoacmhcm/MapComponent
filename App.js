@@ -8,7 +8,8 @@ import React, { Component } from 'react';
 import {
   Platform,
   StyleSheet,
-  View
+  View,
+  TouchableOpacity
 } from 'react-native';
 import Map from './components/Map.js'
 
@@ -58,7 +59,7 @@ export default class App extends Component<{}> {
         followsUserLocation={true}
         markers={this.state.markers}
         textDirection={'Quận 9'} />
-    );
+        );
   }
 }
 

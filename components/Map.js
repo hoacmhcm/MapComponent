@@ -242,6 +242,10 @@ export default class Map extends Component {
                 </MapView>
                 {this.state.status ? <ContentMarker curMarker={this.state.curMarker} /> : null}
 
+                <TouchableOpacity style={{alignContent:'center', alignSelf: 'flex-end' }}>
+                    <Image style={{ width: window.width / 6, height: window.height / 6, resizeMode: 'contain' }} source={require('../assets/report_button.png')} />
+                </TouchableOpacity>
+
             </View >
         )
     }

@@ -3,40 +3,259 @@ import { Text, View, Image, TouchableOpacity, StyleSheet } from 'react-native'
 import IconReport from './IconReport'
 
 export default class SendReport extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            iconArray: [
+                {
+                    imagePath: require('../assets/icon_report_traffic.png'),
+                    backgroundColorIcon: '#E57373',
+                    iconName: 'Traffic',
+                    iconChoosen: [{
+                        image: require('../assets/traffic/1.png'),
+                        name: 'Moderate'
+                    },
+                    {
+                        image: require('../assets/traffic/2.png'),
+                        name: 'Heavy'
+                    },
+                    {
+                        image: require('../assets/traffic/3.png'),
+                        name: 'Heavy'
+                    },
+                    ]
+                },
+                {
+                    imagePath: require('../assets/icon_report_police.png'),
+                    backgroundColorIcon: '#80CBC4',
+                    iconName: 'Police',
+                    iconChoosen: [{
+                        image: require('../assets/police/1.png'),
+                        name: 'Visible'
+                    },
+                    {
+                        image: require('../assets/police/2.png'),
+                        name: 'Hidden'
+                    },
+                    {
+                        image: require('../assets/police/3.png'),
+                        name: 'Other side'
+                    },
+                    ]
+                },
+                {
+                    imagePath: require('../assets/icon_report_accident.png'),
+                    backgroundColorIcon: '#BDBDBD',
+                    iconName: 'Crash',
+                    iconChoosen: [{
+                        image: require('../assets/accident/1.png'),
+                        name: 'Minor'
+                    },
+                    {
+                        image: require('../assets/accident/2.png'),
+                        name: 'Major'
+                    },
+                    {
+                        image: require('../assets/accident/3.png'),
+                        name: 'Other side'
+                    },
+                    ]
+                },
+                {
+                    imagePath: require('../assets/icon_report_hazard.png'),
+                    backgroundColorIcon: '#FFB74D',
+                    iconName: 'Hazard',
+                    iconChoosen: [{
+                        image: require('../assets/hazard/1.png'),
+                        name: 'On road'
+                    },
+                    {
+                        image: require('../assets/hazard/2.png'),
+                        name: 'Shoulder'
+                    },
+                    {
+                        image: require('../assets/hazard/3.png'),
+                        name: 'Weather'
+                    },
+                    ]
+                },
+                {
+                    imagePath: require('../assets/icon_report_chitchat.png'),
+                    backgroundColorIcon: '#C5E1A5',
+                    iconName: 'Map chat',
+                    iconChoosen: []
+                },
+                {
+                    imagePath: require('../assets/icon_report_map_issue.png'),
+                    backgroundColorIcon: '#EEEEEE',
+                    iconName: 'Map issue',
+                    iconChoosen: [{
+                        image: require('../assets/map_issue/1.png'),
+                        name: 'Map issue'
+                    },
+                    {
+                        image: require('../assets/map_issue/2.png'),
+                        name: 'Pave'
+                    },
+                    ]
+                },
+                {
+                    imagePath: require('../assets/icon_report_places.png'),
+                    backgroundColorIcon: '#E1BEE7',
+                    iconName: 'Place',
+                    iconChoosen: []
+                },
+                {
+                    imagePath: require('../assets/icon_report_assistance.png'),
+                    backgroundColorIcon: '#FF5252',
+                    iconName: 'Roadside help',
+                    iconChoosen: [
+                        {
+                            image: require('../assets/assistance/1.png'),
+                            name: 'Fellow Wazers'
+                        },
+                        {
+                            image: require('../assets/assistance/2.png'),
+                            name: 'Emergency call'
+                        },
+                        {
+                            image: require('../assets/assistance/3.png'),
+                            name: 'Placeholder'
+                        },
+                    ]
+                },
+                {
+                    imagePath: require('../assets/icon_report_speedcam.png'),
+                    backgroundColorIcon: '#A5D6A7',
+                    iconName: 'Camera',
+                    iconChoosen: [
+                        {
+                            image: require('../assets/speedcam/1.png'),
+                            name: 'Speed'
+                        },
+                        {
+                            image: require('../assets/speedcam/2.png'),
+                            name: 'Red light'
+                        },
+                        {
+                            image: require('../assets/speedcam/3.png'),
+                            name: 'Fake'
+                        },
+                    ]
+                },
+                {
+                    imagePath: require('../assets/icon_report_closure.png'),
+                    backgroundColorIcon: '#FF8A65',
+                    iconName: 'Closure',
+                    iconChoosen: []
+                },
+            ]
+        }
+    }
     render() {
+        const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
                 <View style={styles.headerContainer}>
                     <Text style={styles.header}>Send a report</Text>
                 </View>
                 <View style={styles.row1}>
-                    <IconReport imagePath={require('../assets/icon_report_traffic.png')}
-                        backgroundColorIcon={'#E57373'} 
-                        iconName={'Police'}/>
-                    <IconReport imagePath={require('../assets/icon_report_police.png')}
-                        backgroundColorIcon={'#80CBC4'} />
-                    <IconReport imagePath={require('../assets/icon_report_accident.png')}
-                        backgroundColorIcon={'#BDBDBD'} />
+                    <IconReport imagePath={this.state.iconArray[0].imagePath}
+                        backgroundColorIcon={this.state.iconArray[0].backgroundColorIcon}
+                        iconName={this.state.iconArray[0].iconName}
+                        onPress={() => navigate('ContentReport', {
+                            imagePath: this.state.iconArray[0].imagePath,
+                            backgroundColorIcon: this.state.iconArray[0].backgroundColorIcon,
+                            iconName: this.state.iconArray[0].iconName,
+                            iconChoosen: this.state.iconArray[0].iconChoosen
+                        })} />
+                    <IconReport imagePath={this.state.iconArray[1].imagePath}
+                        backgroundColorIcon={this.state.iconArray[1].backgroundColorIcon}
+                        iconName={this.state.iconArray[1].iconName}
+                        onPress={() => navigate('ContentReport', {
+                            imagePath: this.state.iconArray[1].imagePath,
+                            backgroundColorIcon: this.state.iconArray[1].backgroundColorIcon,
+                            iconName: this.state.iconArray[1].iconName,
+                            iconChoosen: this.state.iconArray[1].iconChoosen
+                        })} />
+                    <IconReport imagePath={this.state.iconArray[2].imagePath}
+                        backgroundColorIcon={this.state.iconArray[2].backgroundColorIcon}
+                        iconName={this.state.iconArray[2].iconName}
+                        onPress={() => navigate('ContentReport', {
+                            imagePath: this.state.iconArray[2].imagePath,
+                            backgroundColorIcon: this.state.iconArray[2].backgroundColorIcon,
+                            iconName: this.state.iconArray[2].iconName,
+                            iconChoosen: this.state.iconArray[2].iconChoosen
+                        })} />
                 </View>
                 <View style={styles.row2}>
-                    <IconReport imagePath={require('../assets/icon_report_hazard.png')}
-                        backgroundColorIcon={'#FFB74D'} />
-                    <IconReport imagePath={require('../assets/icon_report_chitchat.png')}
-                        backgroundColorIcon={'#C5E1A5'} />
-                    <IconReport imagePath={require('../assets/icon_report_map_issue.png')}
-                        backgroundColorIcon={'#EEEEEE'} />
+                    <IconReport imagePath={this.state.iconArray[3].imagePath}
+                        backgroundColorIcon={this.state.iconArray[3].backgroundColorIcon}
+                        iconName={this.state.iconArray[3].iconName}
+                        onPress={() => navigate('ContentReport', {
+                            imagePath: this.state.iconArray[3].imagePath,
+                            backgroundColorIcon: this.state.iconArray[3].backgroundColorIcon,
+                            iconName: this.state.iconArray[3].iconName,
+                            iconChoosen: this.state.iconArray[3].iconChoosen
+                        })} />
+                    <IconReport imagePath={this.state.iconArray[4].imagePath}
+                        backgroundColorIcon={this.state.iconArray[4].backgroundColorIcon}
+                        iconName={this.state.iconArray[4].iconName}
+                        onPress={() => navigate('ContentReport', {
+                            imagePath: this.state.iconArray[4].imagePath,
+                            backgroundColorIcon: this.state.iconArray[4].backgroundColorIcon,
+                            iconName: this.state.iconArray[4].iconName,
+                            iconChoosen: this.state.iconArray[4].iconChoosen
+                        })} />
+                    <IconReport imagePath={this.state.iconArray[5].imagePath}
+                        backgroundColorIcon={this.state.iconArray[5].backgroundColorIcon}
+                        iconName={this.state.iconArray[5].iconName}
+                        onPress={() => navigate('ContentReport', {
+                            imagePath: this.state.iconArray[5].imagePath,
+                            backgroundColorIcon: this.state.iconArray[5].backgroundColorIcon,
+                            iconName: this.state.iconArray[5].iconName,
+                            iconChoosen: this.state.iconArray[5].iconChoosen
+                        })} />
                 </View>
                 <View style={styles.row3}>
-                    <IconReport imagePath={require('../assets/icon_report_places.png')}
-                        backgroundColorIcon={'#E1BEE7'} />
-                    <IconReport imagePath={require('../assets/icon_report_assistance.png')}
-                        backgroundColorIcon={'#FF5252'} />
-                    <IconReport imagePath={require('../assets/icon_report_speedcam.png')}
-                        backgroundColorIcon={'#A5D6A7'} />
+                    <IconReport imagePath={this.state.iconArray[6].imagePath}
+                        backgroundColorIcon={this.state.iconArray[6].backgroundColorIcon}
+                        iconName={this.state.iconArray[6].iconName}
+                        onPress={() => navigate('ContentReport', {
+                            imagePath: this.state.iconArray[6].imagePath,
+                            backgroundColorIcon: this.state.iconArray[6].backgroundColorIcon,
+                            iconName: this.state.iconArray[6].iconName,
+                            iconChoosen: this.state.iconArray[6].iconChoosen
+                        })} />
+                    <IconReport imagePath={this.state.iconArray[7].imagePath}
+                        backgroundColorIcon={this.state.iconArray[7].backgroundColorIcon}
+                        iconName={this.state.iconArray[7].iconName}
+                        onPress={() => navigate('ContentReport', {
+                            imagePath: this.state.iconArray[7].imagePath,
+                            backgroundColorIcon: this.state.iconArray[7].backgroundColorIcon,
+                            iconName: this.state.iconArray[7].iconName,
+                            iconChoosen: this.state.iconArray[7].iconChoosen
+                        })} />
+                    <IconReport imagePath={this.state.iconArray[8].imagePath}
+                        backgroundColorIcon={this.state.iconArray[8].backgroundColorIcon}
+                        iconName={this.state.iconArray[8].iconName}
+                        onPress={() => navigate('ContentReport', {
+                            imagePath: this.state.iconArray[8].imagePath,
+                            backgroundColorIcon: this.state.iconArray[8].backgroundColorIcon,
+                            iconName: this.state.iconArray[8].iconName,
+                            iconChoosen: this.state.iconArray[8].iconChoosen
+                        })} />
                 </View>
                 <View style={styles.row4}>
-                    <IconReport imagePath={require('../assets/icon_report_closure.png')}
-                        backgroundColorIcon={'#FF8A65'} />
+                    <IconReport imagePath={this.state.iconArray[9].imagePath}
+                        backgroundColorIcon={this.state.iconArray[9].backgroundColorIcon}
+                        iconName={this.state.iconArray[9].iconName}
+                        onPress={() => navigate('ContentReport', {
+                            imagePath: this.state.iconArray[9].imagePath,
+                            backgroundColorIcon: this.state.iconArray[9].backgroundColorIcon,
+                            iconName: this.state.iconArray[9].iconName,
+                            iconChoosen: this.state.iconArray[9].iconChoosen
+                        })} />
                 </View>
             </View >
         )
@@ -89,7 +308,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         marginLeft: 10,
         marginRight: 10,
-        marginBottom:50
+        marginBottom: 50
     },
 
 })

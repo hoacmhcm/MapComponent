@@ -2,6 +2,7 @@ import React from 'react'
 import { StackNavigator } from "react-navigation";
 import Map from './Map'
 import SendReport from './SendReport'
+import ContentReport from './ContentReport'
 
 const Navigator = StackNavigator(
     {
@@ -13,6 +14,10 @@ const Navigator = StackNavigator(
             path: '/report',
             screen: SendReport
         },
+        ContentReport: {
+            path: '/contentreport',
+            screen: ContentReport
+        }
     },
     {
         initialRouteName: 'Map',

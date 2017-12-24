@@ -5,7 +5,8 @@ export default class IconReport extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <TouchableOpacity style={[styles.opacity, { backgroundColor: this.props.backgroundColorIcon }]}>
+                <TouchableOpacity style={[styles.opacity, { backgroundColor: this.props.backgroundColorIcon }]}
+                    onPress={this.props.onPress}>
                     <Image style={styles.image} source={this.props.imagePath} />
                 </TouchableOpacity>
                 <Text style={styles.iconName}>{this.props.iconName}</Text>
@@ -29,6 +30,6 @@ const styles = StyleSheet.create({
     },
     iconName: {
         fontSize: 17,
-        color:'white'
+        color: 'white'
     }
 })

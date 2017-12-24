@@ -24,6 +24,8 @@ export default class Map extends Component {
     //     drawerLabel: 'Home Screen',
     // }
 
+    map = null;
+
 
     constructor(props) {
         super(props);
@@ -66,6 +68,7 @@ export default class Map extends Component {
                 }
             ],
             textDirection: 'Quận 9',
+            ready: true,
         }
     }
 
@@ -138,11 +141,39 @@ export default class Map extends Component {
         }
     }
 
+    getMyposition() {
+        try {
+            // console.log(this.state.mapRegion);
+            console.log(this.map);
+            // this.refs.mapview.animteToRegion(this.state.mapRegion,1500);
+            navigator.geolocation.getCurrentPosition((position) => {
+                console.log(position);
+                this.setState({
+                    mapRegion: {
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude,
+                        latitudeDelta: 0.00922 * 1.5,
+                        longitudeDelta: 0.00421 * 1.5,
+                    }
+                });
+                setTimeout(() => this.map.animateToRegion((this.state.mapRegion)), 10);
+                
+            },
+                (error) => alert(error.message),
+                { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+            );
+        } catch (error) {
+            alert(error)
+            return error
+        }
+
+    }
+
     getDirect = () => {
         try {
             // if (this.props.textDirection !== null) {
             if (this.state.textDirection !== null) {
-                console.log('GET!!!!');
+                // console.log('GET!!!!');
                 navigator.geolocation.getCurrentPosition((position) => {
                     console.log(position);
                     this.setState({
@@ -170,21 +201,6 @@ export default class Map extends Component {
 
     componentDidMount() {
 
-        navigator.geolocation.getCurrentPosition((position) => {
-            console.log(position);
-            this.setState({
-                currentRegion: {
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude,
-                    latitudeDelta: 0.00922 * 1.5,
-                    longitudeDelta: 0.00421 * 1.5,
-                }
-            });
-        },
-            (error) => alert(error.message),
-            { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-        );
-
         this.watchID = navigator.geolocation.watchPosition((position) => {
             // Create the object to update this.state.mapRegion through the onRegionChange function
             let region = {
@@ -195,8 +211,25 @@ export default class Map extends Component {
             }
             this.setState({ mapRegion: region });
         });
+        // console.log(this.state.mapRegion)
 
-        this.getDirect();
+
+        // navigator.geolocation.getCurrentPosition((position) => {
+        //     console.log(position);
+        //     this.setState({
+        //         currentRegion: {
+        //             latitude: position.coords.latitude,
+        //             longitude: position.coords.longitude,
+        //             latitudeDelta: 0.00922 * 1.5,
+        //             longitudeDelta: 0.00421 * 1.5,
+        //         }
+        //     });
+        // },
+        //     (error) => alert(error.message),
+        //     { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+        // );
+
+        // this.getDirect();
 
     }
 
@@ -245,11 +278,13 @@ export default class Map extends Component {
             <View style={{ flex: 1 }}>
                 <MapView
                     style={styles.map}
+                    ref={map => { this.map = map }}
                     // showsUserLocation={this.props.showsUserLocation}
                     // followsUserLocation={this.props.followsUserLocation}
                     showsUserLocation={true}
                     followsUserLocation={true}
-                    initialRegion={this.state.currentRegion}
+                    showsMyLocationButton={false}
+                    initialRegion={this.state.mapRegion}
                     onRegionChange={this.onRegionChange}
                     onPress={this.onMapPress} >
 
@@ -260,12 +295,6 @@ export default class Map extends Component {
                             coordinate={marker.latlng}
                             image={marker.image}
                             onPress={() => { this.toogle(marker) }}>
-                            {/* <MapView.Callout>
-                                <View style={{ flex: 1, width: 300, height: 300 }}>
-                                    <Text style={{ backgroundColor: 'red' }}>aaaaaaaaaaa</Text>
-                                    <TouchableOpacity style={{ backgroundColor: 'green' }} onPress={() => alert('he')}><Text>22222222</Text></TouchableOpacity>
-                                </View>
-                            </MapView.Callout> */}
                         </MapView.Marker>))}
 
 
@@ -275,9 +304,14 @@ export default class Map extends Component {
                 </MapView>
                 {this.state.status ? <ContentMarker curMarker={this.state.curMarker} /> : null}
 
-                <TouchableOpacity style={{ position: 'absolute', bottom: 0, paddingRight: 10, alignSelf: 'flex-end' }
+                <TouchableOpacity style={{ position: 'absolute', bottom: 30, paddingRight: 20, alignSelf: 'flex-end' }
                 } onPress={() => navigate('Report')}>
                     <Image style={{ width: window.width / 6, height: window.height / 6, resizeMode: 'contain' }} source={require('../assets/report_button.png')} />
+                </TouchableOpacity>
+
+                <TouchableOpacity style={{ position: 'absolute', bottom: 0, paddingLeft: 10 }
+                } onPress={() => { this.getMyposition() }}>
+                    <Image style={{ width: window.width / 4, height: window.height / 4, resizeMode: 'contain' }} source={require('../assets/center_button_map.png')} />
                 </TouchableOpacity>
 
             </View >

@@ -13,15 +13,18 @@ export default class SendReport extends Component {
                     iconName: 'Traffic',
                     iconChoosen: [{
                         image: require('../assets/traffic/1.png'),
-                        name: 'Moderate'
+                        name: 'Moderate',
+                        key:0
                     },
                     {
                         image: require('../assets/traffic/2.png'),
-                        name: 'Heavy'
+                        name: 'Heavy',
+                        key:1
                     },
                     {
                         image: require('../assets/traffic/3.png'),
-                        name: 'Heavy'
+                        name: 'Heavy',
+                        key:2
                     },
                     ]
                 },
@@ -31,15 +34,18 @@ export default class SendReport extends Component {
                     iconName: 'Police',
                     iconChoosen: [{
                         image: require('../assets/police/1.png'),
-                        name: 'Visible'
+                        name: 'Visible',
+                        key:3
                     },
                     {
                         image: require('../assets/police/2.png'),
-                        name: 'Hidden'
+                        name: 'Hidden',
+                        key:4
                     },
                     {
                         image: require('../assets/police/3.png'),
-                        name: 'Other side'
+                        name: 'Other side',
+                        key:5
                     },
                     ]
                 },
@@ -49,15 +55,18 @@ export default class SendReport extends Component {
                     iconName: 'Crash',
                     iconChoosen: [{
                         image: require('../assets/accident/1.png'),
-                        name: 'Minor'
+                        name: 'Minor',
+                        key:6
                     },
                     {
                         image: require('../assets/accident/2.png'),
-                        name: 'Major'
+                        name: 'Major',
+                        key:7
                     },
                     {
                         image: require('../assets/accident/3.png'),
-                        name: 'Other side'
+                        name: 'Other side',
+                        key:8
                     },
                     ]
                 },
@@ -67,15 +76,18 @@ export default class SendReport extends Component {
                     iconName: 'Hazard',
                     iconChoosen: [{
                         image: require('../assets/hazard/1.png'),
-                        name: 'On road'
+                        name: 'On road',
+                        key:9
                     },
                     {
                         image: require('../assets/hazard/2.png'),
-                        name: 'Shoulder'
+                        name: 'Shoulder',
+                        key:10
                     },
                     {
                         image: require('../assets/hazard/3.png'),
-                        name: 'Weather'
+                        name: 'Weather',
+                        key:11
                     },
                     ]
                 },
@@ -91,11 +103,13 @@ export default class SendReport extends Component {
                     iconName: 'Map issue',
                     iconChoosen: [{
                         image: require('../assets/map_issue/1.png'),
-                        name: 'Map issue'
+                        name: 'Map issue',
+                        key:12
                     },
                     {
                         image: require('../assets/map_issue/2.png'),
-                        name: 'Pave'
+                        name: 'Pave',
+                        key:13
                     },
                     ]
                 },
@@ -112,15 +126,19 @@ export default class SendReport extends Component {
                     iconChoosen: [
                         {
                             image: require('../assets/assistance/1.png'),
-                            name: 'Fellow Wazers'
+                            name: 'Fellow Wazers',
+                            key:14
                         },
                         {
                             image: require('../assets/assistance/2.png'),
-                            name: 'Emergency call'
+                            name: 'Emergency call',
+                            key:15
+                            
                         },
                         {
                             image: require('../assets/assistance/3.png'),
-                            name: 'Placeholder'
+                            name: 'Placeholder',
+                            key:16
                         },
                     ]
                 },
@@ -131,15 +149,18 @@ export default class SendReport extends Component {
                     iconChoosen: [
                         {
                             image: require('../assets/speedcam/1.png'),
-                            name: 'Speed'
+                            name: 'Speed',
+                            key:17
                         },
                         {
                             image: require('../assets/speedcam/2.png'),
-                            name: 'Red light'
+                            name: 'Red light',
+                            key:18
                         },
                         {
                             image: require('../assets/speedcam/3.png'),
-                            name: 'Fake'
+                            name: 'Fake',
+                            key:19
                         },
                     ]
                 },
@@ -310,5 +331,4 @@ const styles = StyleSheet.create({
         marginRight: 10,
         marginBottom: 50
     },
-
 })

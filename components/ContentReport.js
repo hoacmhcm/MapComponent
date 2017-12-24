@@ -4,21 +4,6 @@ import IconReport from './IconReport'
 import IconReportChoosen from './IconReportChoosen'
 
 export default class ContentReport extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            icon: []
-        }
-    }
-
-    getFilterIcon(name) {
-        switch (name) {
-            case 'Traffic':
-                {
-
-                }
-        }
-    }
     render() {
         const { state } = this.props.navigation;
         return (
@@ -30,14 +15,10 @@ export default class ContentReport extends Component {
                             iconName={state.params.iconName} />
                     </View>
                     <View style={styles.listicon} >
-                        {/* <IconReportChoosen imagePath={require('../assets/traffic/1.png')}
-                            iconName={'Traffic'} />
-                        <IconReportChoosen imagePath={require('../assets/traffic/2.png')}
-                            iconName={'Traffic'} />
-                        <IconReportChoosen imagePath={require('../assets/traffic/3.png')}
-                            iconName={'Traffic'} /> */}
                         {state.params.iconChoosen.map((icon) => (
-                            <IconReportChoosen imagePath={icon.image}
+                            <IconReportChoosen
+                                key={icon.key}
+                                imagePath={icon.image}
                                 iconName={icon.name} />
                         ))}
                     </View>
@@ -79,6 +60,7 @@ const styles = StyleSheet.create({
     },
     description: {
         flex: 2.5,
+        flexDirection: 'row',
     }
     ,
     button: {

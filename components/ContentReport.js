@@ -4,26 +4,56 @@ import IconReport from './IconReport'
 import IconReportChoosen from './IconReportChoosen'
 
 export default class ContentReport extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            indexChoosen: -1
+        }
+    }
+
+    updateChoice(index) {
+        console.log("index updateChoice " + index);
+        this.setState({ indexChoosen: index });
+        console.log("setState indexChoosen " + this.state.indexChoosen);
+    }
+
+    getSeleted = (index) => {
+        console.log("index getSeleted" + index);
+        if (index === this.state.indexChoosen) {
+            return true
+        } else {
+            return false
+        }
+    }
+
     render() {
         const { state } = this.props.navigation;
+        console.log(this.state.indexChoosen);
         return (
             <View style={styles.container}>
                 <View style={styles.content}>
                     <View style={styles.mainicon}>
                         <IconReport imagePath={state.params.imagePath}
                             backgroundColorIcon={state.params.backgroundColorIcon}
-                            iconName={state.params.iconName} />
+                            iconName={state.params.iconName}
+                            onPress={() => this.updateChoice(1)}
+                        />
                     </View>
                     <View style={styles.listicon} >
-                        {state.params.iconChoosen.map((icon) => (
-                            <IconReportChoosen
-                                key={icon.key}
-                                imagePath={icon.image}
-                                iconName={icon.name} />
-                        ))}
+                        {state.params.iconChoosen.map((icon, index) =>
+                            (
+                                <IconReportChoosen
+                                    key={icon.key}
+                                    imagePath={icon.image}
+                                    iconName={icon.name}
+                                    onPress={() => { this.updateChoice(index) }}
+                                    selected={this.getSeleted(index)} />
+                            ))}
                     </View>
                     <View style={styles.description} >
-
+                        <TouchableOpacity onPress={() => this.updateChoice()}>
+                            <Text>aaaaaaaa</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
 

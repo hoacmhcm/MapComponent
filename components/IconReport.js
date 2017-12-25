@@ -10,7 +10,7 @@ export default class IconReport extends Component {
                     <Image style={styles.image} source={this.props.imagePath} />
                 </TouchableOpacity>
                 <Text style={styles.iconName}>{this.props.iconName}</Text>
-            </View>
+            </View >
         )
     }
 }

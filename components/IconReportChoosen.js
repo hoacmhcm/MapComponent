@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, Image } from 'react-native'
+import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native'
 
 export default class IconReportChoosen extends Component {
   render() {
     return (
-      <View style={styles.icon}>
+      <TouchableOpacity style={[styles.icon, this.props.selected ? { backgroundColor: '#212121' } : {}]} onPress={this.props.onPress}>
         <Image style={styles.image} source={this.props.imagePath} />
         <Text style={styles.iconName}>{this.props.iconName}</Text>
-      </View>
+      </TouchableOpacity>
     )
   }
 }

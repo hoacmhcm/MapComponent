@@ -17,7 +17,7 @@ const Navigator = StackNavigator(
         ContentReport: {
             path: '/contentreport',
             screen: ContentReport
-        }
+        },
     },
     {
         initialRouteName: 'Map',

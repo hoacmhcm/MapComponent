@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, TouchableOpacity, Image, Dimensions } from 'react-native'
+import { Text, View, StyleSheet, TouchableOpacity, Image, Dimensions, TextInput } from 'react-native'
 import IconReport from './IconReport'
 import IconReportChoosen from './IconReportChoosen'
 
@@ -9,18 +9,19 @@ export default class ContentReport extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            indexChoosen: -1
+            indexChoosen: -1,
+            text: '',
         }
     }
 
     updateChoice(index) {
-        console.log("index updateChoice " + index);
+        // console.log("index updateChoice " + index);
         this.setState({ indexChoosen: index });
-        console.log("setState indexChoosen " + this.state.indexChoosen);
+        // console.log("setState indexChoosen " + this.state.indexChoosen);
     }
 
     getSeleted = (index) => {
-        console.log("index getSeleted" + index);
+        // console.log("index getSeleted" + index);
         if (index === this.state.indexChoosen) {
             return true
         } else {
@@ -28,10 +29,28 @@ export default class ContentReport extends Component {
         }
     }
 
+    submitReport(data) {
+        if (this.state.indexChoosen === -1) {
+            let report = {
+                title: data.iconName,
+                description: this.state.text,
+                image: data.imagePath,
+            }
+            console.log(report);
+        } else {
+            let report = {
+                title: data.iconChoosen[this.state.indexChoosen].name,
+                description: this.state.text,
+                image: data.iconChoosen[this.state.indexChoosen].image,
+            }
+            console.log(report.image);
+        }
+    }
+
     render() {
         const { state } = this.props.navigation;
         const { navigate, goBack } = this.props.navigation;
-        console.log(this.state.indexChoosen);
+        // console.log(this.state.indexChoosen);
         return (
             <View style={styles.container}>
                 <View style={{ flex: 1, backgroundColor: '#374249' }} >
@@ -60,12 +79,21 @@ export default class ContentReport extends Component {
                             ))}
                     </View>
                     <View style={styles.description} >
-
+                        <Image style={styles.imageadddescription}
+                            source={require('../assets/icon_reports_addtext.png')} />
+                        <TextInput placeholder={'Add a description'}
+                            style={styles.textinput}
+                            placeholderTextColor={'#90A4AE'}
+                            selectionColor={'#90A4AE'}
+                            underlineColorAndroid={'transparent'}
+                            onChangeText={(text) => this.setState({ text })}
+                            value={this.state.stext} />
                     </View>
                 </View>
 
                 <View style={styles.button}>
-                    <TouchableOpacity style={styles.opacitybutton}>
+                    <TouchableOpacity style={styles.opacitybutton}
+                        onPress={() => { this.submitReport(state.params) }}>
                         <Text style={styles.text}>Send</Text>
                     </TouchableOpacity>
                 </View>
@@ -108,6 +136,8 @@ const styles = StyleSheet.create({
     description: {
         flex: 2.5,
         flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
     }
     ,
     button: {
@@ -130,5 +160,16 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 30
     },
+    imageadddescription: {
+        width: window.width / 10,
+        height: window.height / 10,
+        resizeMode: 'contain',
+        marginRight: 10,
+        marginLeft: 50
+    },
+    textinput: {
+        flexGrow: 1,
+        marginRight: 50
+    }
 
 })

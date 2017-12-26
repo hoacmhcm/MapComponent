@@ -21,11 +21,11 @@ export default class ContentMarker extends Component {
                 <View style={styles.bottom}>
                     <Text style={styles.sign}>1 phút trước bởi Chau Minh Hoa</Text>
                     <View style={styles.button}>
-                        <TouchableOpacity>
-                            <Image source={require('../assets/comment.png')} />
+                        <TouchableOpacity style={styles.opacitycomment}>
+                            <Image style={styles.imagecomment} source={require('../assets/take_over_comment_icon.png')} />
                         </TouchableOpacity>
-                        <TouchableOpacity>
-                            <Image source={require('../assets/close.png')} />
+                        <TouchableOpacity style={styles.opacitylike}>
+                            <Image style={styles.imagelike} source={require('../assets/take_over_like_icon.png')} />
                         </TouchableOpacity>
                     </View >
                 </View >
@@ -54,14 +54,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flex: 1.5
     },
-    
+
     title: {
         marginTop: window.height / 70,
         alignSelf: 'center',
         color: 'silver',
         fontSize: window.height / 15
     },
-    distance:{
+    distance: {
         color: 'white',
         marginTop: window.height / 100,
         fontSize: window.height / 20,
@@ -80,9 +80,9 @@ const styles = StyleSheet.create({
         marginLeft: 10,
     },
     bottom: {
-        flex: 1,
+        flex: 1.5,
         flexDirection: 'row',
-        alignItems:'center'
+        alignItems: 'center'
     },
     sign: {
         flex: 3,
@@ -94,5 +94,28 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around'
+    },
+    opacitycomment: {
+        backgroundColor: '#29B6F6',
+        borderRadius: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    opacitylike: {
+        backgroundColor: '#9E9E9E',
+        borderRadius: 20,
+
+    },
+    imagecomment: {
+        resizeMode: 'contain',
+        width: window.width / 10,
+        height: window.height / 20,
+        margin: 7
+    },
+    imagelike: {
+        resizeMode: 'contain',
+        width: window.width / 10,
+        height: window.height / 20,
+        margin: 7
     }
 })

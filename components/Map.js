@@ -47,7 +47,7 @@ export default class Map extends Component {
             markers: [
                 {
                     id: 1,
-                    latlng: { latitude: 10.8448376, longitude: 106.7765558 },
+                    latlng: { latitude: 10.602900, longitude: 106.667606 },
                     image: require('../assets/traffic_bar_report_police.png'),
                     title: 'Kẹt xe',
                     description: 'Ngay trước sư phạm kỹ thuật'
@@ -157,7 +157,7 @@ export default class Map extends Component {
                     }
                 });
                 setTimeout(() => this.map.animateToRegion((this.state.mapRegion)), 10);
-                
+
             },
                 (error) => alert(error.message),
                 { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }

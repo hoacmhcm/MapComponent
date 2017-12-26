@@ -29,7 +29,7 @@ const Navigator = StackNavigator(
             transitionSpec: {
                 duration: 0
             }
-        })
+        }),
     }
 
 );

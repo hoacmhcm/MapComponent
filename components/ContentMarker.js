@@ -21,7 +21,8 @@ export default class ContentMarker extends Component {
                 <View style={styles.bottom}>
                     <Text style={styles.sign}>1 phút trước bởi Chau Minh Hoa</Text>
                     <View style={styles.button}>
-                        <TouchableOpacity style={styles.opacitycomment}>
+                        <TouchableOpacity style={styles.opacitycomment}
+                            onPress={this.props.navigateComment}>
                             <Image style={styles.imagecomment} source={require('../assets/take_over_comment_icon.png')} />
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.opacitylike}>
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
     container: {
         width: window.width,
         height: window.height / 3,
-        backgroundColor: '#3e4d66',
+        backgroundColor: '#263238',
     },
     top: {
         flex: 5,
@@ -56,28 +57,26 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        marginTop: window.height / 70,
-        alignSelf: 'center',
-        color: 'silver',
+        marginTop: window.height / 100,
+        color: '#9E9E9E',
         fontSize: window.height / 15
     },
     distance: {
         color: 'white',
-        marginTop: window.height / 100,
         fontSize: window.height / 20,
         marginLeft: 5,
     },
     description: {
-        color: 'white',
-        marginTop: window.height / 80,
+        color: '#29B6F6',
         fontSize: window.height / 40,
         marginLeft: 10,
     },
     place: {
         color: 'white',
-        marginTop: window.height / 80,
         fontSize: window.height / 50,
-        marginLeft: 10,
+        position:'absolute',
+        bottom:0,
+        left:10
     },
     bottom: {
         flex: 1.5,
@@ -86,10 +85,11 @@ const styles = StyleSheet.create({
     },
     sign: {
         flex: 3,
-        marginLeft: 10
+        marginLeft: 10,
+        color:'#9E9E9E'
     },
     button: {
-        backgroundColor: '#3e4d66',
+        backgroundColor: '#263238',
         flex: 1.5,
         flexDirection: 'row',
         alignItems: 'center',

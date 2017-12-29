@@ -22,7 +22,8 @@ export default class Comment extends Component {
                 comment: 'Rất bổ ích !!!',
                 time: '2 min ago'
             },
-            ]
+            ],
+            text: ''
         }
     }
     render() {
@@ -49,7 +50,13 @@ export default class Comment extends Component {
                         </ View>
                     </ View>
                     <View style={styles.bottompost}>
-
+                        <Text style={styles.sign}>1 min ago by Chau Minh Hoa</Text>
+                        <View style={styles.button}>
+                            <Text style={styles.textcommentlike}>{this.state.comment.length}</Text>
+                            <Image style={styles.imagecomment} source={require('../assets/white_comments_icons.png')} />
+                            <Text style={styles.textcommentlike}>1 </Text>
+                            <Image style={styles.imagelike} source={require('../assets/white_likes_icons.png')} />
+                        </View >
                     </ View>
                 </ View>
                 <View style={styles.listcomment}>
@@ -62,7 +69,10 @@ export default class Comment extends Component {
                         <View style={styles.comment}>
                             <TextInput placeholderTextColor={'#616161'}
                                 underlineColorAndroid={'transparent'}
-                                placeholder={'Add a comment'} />
+                                placeholder={'Add a comment'}
+                                onChangeText={(value) => { this.setState({ text: value }) }}
+                                value={this.state.text}
+                                onSubmitEditing={() => { alert('Done!!') }} />
                         </ View>
                         {/* <View style={styles.send}>
                             <Image source={require('../assets/blue_comments_send_icon.png')} />
@@ -101,6 +111,8 @@ const styles = StyleSheet.create({
     },
     bottompost: {
         flex: 1.5,
+        flexDirection: 'row',
+        alignItems: 'center'
     },
     listcomment: {
         flex: 5.5,
@@ -150,9 +162,47 @@ const styles = StyleSheet.create({
         margin: 10,
     },
     comment: {
-        flex:9
+        flex: 9
     },
     send: {
+    },
+    sign: {
+        flex: 3,
+        marginLeft: 10,
+        color: '#9E9E9E'
+    },
+    opacitycomment: {
+        backgroundColor: '#29B6F6',
+        borderRadius: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    opacitylike: {
+        backgroundColor: '#9E9E9E',
+        borderRadius: 20,
+
+    },
+    imagecomment: {
+        resizeMode: 'contain',
+        width: window.width / 15,
+        height: window.height / 20,
+        margin: 7
+    },
+    imagelike: {
+        resizeMode: 'contain',
+        width: window.width / 15,
+        height: window.height / 20,
+        margin: 7
+    },
+    button: {
+        backgroundColor: '#1A2128',
+        flex: 1.5,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-around'
+    },
+    textcommentlike: {
+        color: 'white'
     }
 
 })

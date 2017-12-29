@@ -19,7 +19,7 @@ export default class ContentMarker extends Component {
                     </View >
                 </View >
                 <View style={styles.bottom}>
-                    <Text style={styles.sign}>1 phút trước bởi Chau Minh Hoa</Text>
+                    <Text style={styles.sign}>1 min ago by Chau Minh Hoa</Text>
                     <View style={styles.button}>
                         <TouchableOpacity style={styles.opacitycomment}
                             onPress={this.props.navigateComment}>

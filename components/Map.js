@@ -26,11 +26,11 @@ export default class Map extends Component {
 
     map = null;
 
-
     constructor(props) {
         super(props);
         this.state = {
             mapRegion: null,
+            currentRegion: null,
             status: false,
             curMarker: {
                 id: null,
@@ -143,24 +143,20 @@ export default class Map extends Component {
 
     getMyposition() {
         try {
-            // console.log(this.state.mapRegion);
-            console.log(this.map);
-            // this.refs.mapview.animteToRegion(this.state.mapRegion,1500);
             navigator.geolocation.getCurrentPosition((position) => {
-                console.log(position);
+                // console.log(position);
                 this.setState({
-                    mapRegion: {
+                    currentRegion: {
                         latitude: position.coords.latitude,
                         longitude: position.coords.longitude,
                         latitudeDelta: 0.00922 * 1.5,
                         longitudeDelta: 0.00421 * 1.5,
                     }
                 });
-                setTimeout(() => this.map.animateToRegion((this.state.mapRegion)), 10);
-
+                setTimeout(() => this.map.animateToRegion((this.state.currentRegion)), 10);
             },
                 (error) => alert(error.message),
-                { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+                { enableHighAccuracy: true, timeout: 20, maximumAge: 1000 }
             );
         } catch (error) {
             alert(error)
@@ -214,20 +210,20 @@ export default class Map extends Component {
         // console.log(this.state.mapRegion)
 
 
-        // navigator.geolocation.getCurrentPosition((position) => {
-        //     console.log(position);
-        //     this.setState({
-        //         currentRegion: {
-        //             latitude: position.coords.latitude,
-        //             longitude: position.coords.longitude,
-        //             latitudeDelta: 0.00922 * 1.5,
-        //             longitudeDelta: 0.00421 * 1.5,
-        //         }
-        //     });
-        // },
-        //     (error) => alert(error.message),
-        //     { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-        // );
+        navigator.geolocation.getCurrentPosition((position) => {
+            console.log(position);
+            this.setState({
+                currentRegion: {
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                    latitudeDelta: 0.00922 * 1.5,
+                    longitudeDelta: 0.00421 * 1.5,
+                }
+            });
+        },
+            (error) => alert(error.message),
+            { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+        );
 
         // this.getDirect();
 
@@ -286,7 +282,9 @@ export default class Map extends Component {
                     showsMyLocationButton={false}
                     initialRegion={this.state.mapRegion}
                     onRegionChange={this.onRegionChange}
-                    onPress={this.onMapPress} >
+                    onPress={this.onMapPress}
+                // region={this.state.currentRegion} >
+                >
 
                     {/* {this.props.markers.map((marker) => ( */}
                     {this.state.markers.map((marker) => (

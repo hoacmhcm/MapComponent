@@ -30,7 +30,7 @@ const Navigator = StackNavigator(
         }
     },
     {
-        initialRouteName: 'Comment',
+        initialRouteName: 'Map',
         headerMode: 'none',
         navigationOptions: ({ navigation }) => ({
             gesturesEnabled: false

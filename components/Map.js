@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Image, View, Text, TouchableOpacity, Dimensions } from 'react-native'
+import { StyleSheet, Image, View, Text, TouchableOpacity, Dimensions, TextInput } from 'react-native'
 import MapView from 'react-native-maps'
 import PropTypes from 'prop-types';
 import Polyline from '@mapbox/polyline';
@@ -69,6 +69,7 @@ export default class Map extends Component {
             ],
             textDirection: 'Quận 9',
             ready: true,
+            search: ''
         }
     }
 
@@ -132,6 +133,7 @@ export default class Map extends Component {
                     coordstemp.push(polyLine);
                 }
             }
+            this.setState({ polylines: null })
             this.setState({ polylines: coordstemp.reverse() })
 
             // console.log(this.state.polylines);
@@ -181,11 +183,11 @@ export default class Map extends Component {
                         }
                     });
                     console.log(this.state.currentRegion);
-                    this.getDirections(this.state.currentRegion.latitude + ',' + this.state.currentRegion.longitude, this.props.textDirection);
+                    this.getDirections(this.state.currentRegion.latitude + ',' + this.state.currentRegion.longitude, this.state.textDirection);
 
                 },
                     (error) => alert(error.message),
-                    { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+                    { enableHighAccuracy: true, timeout: 20, maximumAge: 1000 }
                 );
             }
         } catch (error) {
@@ -312,6 +314,10 @@ export default class Map extends Component {
                 } onPress={() => { this.getMyposition() }}>
                     <Image style={{ width: window.width / 4, height: window.height / 4, resizeMode: 'contain' }} source={require('../assets/center_button_map.png')} />
                 </TouchableOpacity>
+
+                <TextInput onChangeText={(value) => { this.setState({ textDirection: value }) }}
+                    value={this.state.textDirection}
+                    onSubmitEditing={() => { this.getDirect() }} />
 
             </View >
         )
